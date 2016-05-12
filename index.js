@@ -75,7 +75,7 @@ class ArcArray extends Array {
     //This should peform a resolved deep copy, but I need to write some tests against it
     copy(){
         var $target = (is(arguments[arguments.length-1]) === 'boolean' ? [] : this);
-        return _copy($target).arc();
+        return new ArcArray(..._copy($target));
     }
 
     //This is our format for evaluating named prototypes
