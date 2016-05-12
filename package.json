@@ -1,0 +1,26 @@
+{
+  "name": "arc-array",
+  "version": "1.0.0",
+  "description": "An array convenience subclass",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://anyuzer@github.com/anyuzer/arc-array.git"
+  },
+  "keywords": [
+    "array"
+  ],
+  "author": "Ian Reid",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anyuzer/arc-array/issues"
+  },
+  "homepage": "https://github.com/anyuzer/arc-array#readme",
+  "dependencies": {
+    "arc-is": "^1.0.0",
+    "arc-check":"^1.0.0"
+  }
+}
