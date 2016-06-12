@@ -4,7 +4,7 @@ An array convenience subclass for javascript.
 ## Install
 
 ```
-$ npm install --save arc-array
+$ npm install arc-array --save
 ```
 
 
