@@ -4,9 +4,10 @@ var Check = require('arc-check');
 
 class ArcArray extends Array {
     //Pretty much a polyfill of forEach, except here I replaced the array reference (3rd arg) with a break function.
+    //(https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
     each(_f,_thisArg){
-        if (typeof _f !== "function") {
-            throw new TypeError(callback+' is not a function');
+        if(is(_f) !== "function") {
+            throw new TypeError('argument is not a function');
         }
 
         //Declare
@@ -15,7 +16,7 @@ class ArcArray extends Array {
         //Our contextual this (for the callback)
         $this = _thisArg || this;
 
-        //This is mostly based on the polyfill (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
+        //Readibly polyfillian
         key = 0;
         Obj = Object(this);
         length = Obj.length >>> 0;
@@ -57,6 +58,7 @@ class ArcArray extends Array {
                 index++;
             }
         }
+        return this;
     }
 
     //Pass an array in [false,undefined,"SEVEN"] and any index that has a value that matches one of these will be removed
@@ -69,13 +71,30 @@ class ArcArray extends Array {
             //This will be called against the values, if the value exists it 'can' have it, we return true, so the check will pass, telling us we want to remove it.
             return (_excludeVals.indexOf(_val) !== -1 ? true : false);
         });
-        this.filter(C);
+        return this.filter(C);
     }
 
-    //This should peform a resolved deep copy, but I need to write some tests against it
-    copy(){
-        var $target = (is(arguments[arguments.length-1]) === 'boolean' ? [] : this);
-        return new ArcArray(..._copy($target));
+    //Iterate through the array, call the callback passing in the value join the returned values (I may want to check to see if the return val is a string?)
+    joinCallback(_callback,_separator){
+        //Don't bother if the array is empty
+        if(!this.length){
+            return '';
+        }
+
+        //If it's not empty, ensure our argument is correct
+        if(is(_callback) !== 'function'){
+            throw new TypeError('ArcArray.joinCallback requires a valid callback to be passed in');
+        }
+
+        //Normalize the separator
+        _separator = (is(_separator) === 'string' ? _separator : ',');
+
+        //Join
+        var joined = '';
+        for(let i=0;i<this.length;i++){
+            joined = joined+(!i ? _callback(this[i],i) : _separator+_callback(this[i],i));
+        }
+        return joined;
     }
 
     //This is our format for evaluating named prototypes
@@ -91,7 +110,9 @@ class ArcArray extends Array {
             writable: false,
             value: function(){
                 var $this = this;
-                $this = new ArcArray(...$this);
+                if(is($this,true) !== 'ArcArray'){
+                    $this = new ArcArray(...$this);
+                }
                 return $this;
             }
         });
@@ -99,73 +120,3 @@ class ArcArray extends Array {
 }
 
 module.exports = ArcArray;
-
-
-function _copy(_obj){
-    var copier = {'object':copyObject,'array':copyArray,'date':copyDate,'regExp':copyRegExp},
-        circleCache = {'array':[],'object':[]},
-        $return = copyArray(_obj);
-
-    circleCache = null;
-    return $return;
-
-    function checkCircle(_ref,_type){
-        var i,$ref;
-        for(i=0;i<circleCache[_type].length;i++){
-            if(circleCache[_type][i].ref === _ref){
-                $ref = circleCache[_type][i].copy;
-                break;
-            }
-        }
-        if($ref === undefined){
-            $ref = copier[_type](_ref);
-        }
-        return $ref;
-    }
-
-    function copyObject(_obj){
-        var type,prop,
-            newObj = {};
-
-        circleCache.object.push({'ref':_obj,'copy':newObj});
-
-        for(prop in _obj){
-            if(_obj.hasOwnProperty(prop)){
-                if(_obj[prop] !== _obj){
-                    type = is(_obj[prop]);
-                    newObj[prop] = (copier[type] ? checkCircle(_obj[prop],type) : _obj[prop]);
-                }
-                else{
-                    newObj[prop] = newObj;
-                }
-            }
-        }
-        return newObj;
-    }
-
-    function copyArray(_array){
-        var type,i,
-            newArray = [];
-
-        circleCache.array.push({'ref':_array,'copy':newArray});
-
-        for(i=0;i<_array.length;i++){
-            if(_array[i] !== _array){
-                type = is(_array[i]);
-                newArray.push((copier[type] ? checkCircle(_array[i],type) : _array[i]));
-            }
-            else{
-                newArray.push(newArray);
-            }
-        }
-        return newArray;
-    }
-
-    function copyDate(_date){
-        return new Date(_date.getTime());
-    }
-
-    function copyRegExp(_regExp){
-        return new RegExp(_regExp);
-    }
-}

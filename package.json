@@ -4,7 +4,7 @@
   "description": "An array convenience subclass",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tap test/*.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,10 @@
   },
   "homepage": "https://github.com/anyuzer/arc-array#readme",
   "dependencies": {
-    "arc-is": "^1.0.0",
-    "arc-check":"^1.0.0"
+    "arc-check": "^1.0.0",
+    "arc-is": "^1.0.2"
+  },
+  "devDependencies": {
+    "tap": "^5.7.1"
   }
 }
