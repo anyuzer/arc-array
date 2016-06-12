@@ -1,4 +1,4 @@
-# arc-array
+# arc-array [![Build Status](https://travis-ci.org/anyuzer/arc-array.svg?branch=master)](https://travis-ci.org/anyuzer/arc-array)
 An array convenience subclass for javascript.
 
 ## Install
