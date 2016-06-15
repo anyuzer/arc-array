@@ -22,8 +22,11 @@ tap.test('ArcArray.each',function(_test){
 
     //Ensure break behaves as expected
     let count = 0;
-    testArray.each(function(_v,_i,_break){
-        (_i === 2 ? _break() : count++);
+    testArray.each(function(_v,_i){
+        if(_i === 2){
+            return false;
+        }
+        count++;
     });
     _test.equal(count,2);
 

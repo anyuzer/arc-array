@@ -26,16 +26,11 @@ class ArcArray extends Array {
             let val;
             if(key in Obj){
                 val = Obj[key];
-                _f.call($this,val,key,_break);
+                if(_f.call($this,val,key,this) === false){
+                    break;
+                }
             }
             key++;
-            if(eachBreak){
-                break;
-            }
-        }
-
-        function _break(){
-            eachBreak = true;
         }
     }
 

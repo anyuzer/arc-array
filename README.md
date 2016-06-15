@@ -31,10 +31,10 @@ var someArray = new ArcArray('a','','b',false,'c');
 someArray.quickFilter(['',false]);
 
 //Loop through the array
-someArray.each(function(_value,_index,_break){
+someArray.each(function(_value,_index){
     if(_value === 'b'){
         //Break when we hit the value 'b'
-        _break();
+        return false;
     }
 });
 ```
@@ -46,20 +46,20 @@ Create a new `ArcArray` object. Requires `new`
 
 ### .each(callback:Function [,thisContext:Object])
 
-Loop over an array, calling callback each iteration.
+Loop over an array, calling callback each iteration. Break when false is explicitly returned.
 
 **callback** is a required function that is called with 3 arguments passed in
 * value: the value of the current index being iterated over
 * index: the index of the current iteration
-* break: a function that if called will break the loop
+* array: the reference to the original ArcArray object
 
 **thisContext** is an optional object that will be available inside of the callback as 'this' if set, otherwise defaulting to the original array object
 ```js
 //Example of breaking each
 var items = new ArcArray('a','b','c');
-items.each(function(_value,_index,_break){
+items.each(function(_value,_index,_array){
    if(_value === 'b'){
-       _break();
+        return false; //Return explicit false to break
    }
 });
 ```
