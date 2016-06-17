@@ -21,7 +21,8 @@
   "homepage": "https://github.com/anyuzer/arc-array#readme",
   "dependencies": {
     "arc-check": "^1.0.0",
-    "arc-is": "^1.0.2"
+    "arc-is": "^1.0.2",
+    "tap": "^5.7.2"
   },
   "devDependencies": {
     "tap": "^5.7.1"
