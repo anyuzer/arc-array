@@ -112,6 +112,18 @@ class ArcArray extends Array {
             }
         });
     }
+    
+    static wrap(_array){
+        if(is(_array,true) === 'ArcArray'){
+            return _array;
+        }
+        else if(is(_array) === 'array'){
+            return new ArcArray(..._array);
+        }
+        else{
+            throw new TypeError('Cannot wrap value, valid array expected');
+        }
+    }
 }
 
 module.exports = ArcArray;

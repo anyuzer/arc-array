@@ -100,6 +100,9 @@ ArcArray.nativeBind();
 var items = [1,'a','b',false].arc(); //This returns an ArcArray object
 ```
 
+###ArcArray.wrap(array:Array)
+Accept an array, and if it is already an ArcArray return the same object, otherwise create a new ArcArray utilizing the passed in array
+
 ##Testing
 ```
 npm test
