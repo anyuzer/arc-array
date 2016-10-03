@@ -26,7 +26,7 @@ class ArcArray extends Array {
             let val;
             if(key in Obj){
                 val = Obj[key];
-                if(_f.call($this,val,key,this) === false){
+                if(_f.call($this,key,val,this) === false){
                     break;
                 }
             }

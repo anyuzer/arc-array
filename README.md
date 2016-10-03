@@ -49,8 +49,8 @@ Create a new `ArcArray` object. Requires `new`
 Loop over an array, calling callback each iteration. Break when false is explicitly returned.
 
 **callback** is a required function that is called with 3 arguments passed in
-* value: the value of the current index being iterated over
 * index: the index of the current iteration
+* value: the value of the current index being iterated over
 * array: the reference to the original ArcArray object
 
 **thisContext** is an optional object that will be available inside of the callback as 'this' if set, otherwise defaulting to the original array object

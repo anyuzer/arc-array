@@ -11,7 +11,7 @@ tap.test('ArcArray.each',function(_test){
     },TypeError);
 
     //Ensure the iteration behaves as expected
-    testArray.each(function(_value,_index){
+    testArray.each(function(_index,_value){
         switch(_index){
             case 0: _test.equal(_value,'a');    break;
             case 1: _test.equal(_value,'b');    break;
@@ -22,7 +22,7 @@ tap.test('ArcArray.each',function(_test){
 
     //Ensure break behaves as expected
     let count = 0;
-    testArray.each(function(_v,_i){
+    testArray.each(function(_i,_v){
         if(_i === 2){
             return false;
         }
