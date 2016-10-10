@@ -64,11 +64,20 @@ items.each(function(_value,_index,_array){
 });
 ```
 
+###ArcArray.contains(val:Mixed)
+This is a convenience function for `return ([].indexOf(val) !== -1 ? true : false)`
+```js
+//Example of contains
+var alpha = new ArcArray('a','b','c');
+alpha.contains('a'); //returns true
+alpha.contains('z'); //returns false
+```
+
 ### .quickFilter(values:Array)
 Filter out values in array that match values in passed in array. Returns original ArcArray
 
 **values** is an array of values that are compared against individual values in the array. If a match is found, the value in the array is automatically removed.
-```
+```js
 //Example of quickFilter
 var items = new ArcArray('a','b','c');
 items.quickFilter(['b']); //items is reduced to ['a','c']

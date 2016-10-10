@@ -34,6 +34,11 @@ class ArcArray extends Array {
         }
     }
 
+    //Truthy/falsy indexOf
+    contains(_value){
+        return (this.indexOf(_value) === -1 ? false : true);
+    }
+
     //If a value in the array checks true, it will be removed
     filter(_Check){
         if(is(_Check,true) !== 'ArcCheck'){
