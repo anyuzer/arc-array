@@ -11,7 +11,7 @@ class ArcArray extends Array {
         }
 
         //Declare
-        var $this,key,length,Obj,eachBreak;
+        var $this,key,length,Obj;
 
         //Our contextual this (for the callback)
         $this = _thisArg || this;
@@ -32,6 +32,40 @@ class ArcArray extends Array {
             }
             key++;
         }
+    }
+
+    returnEach(_f,_returnArg,_falseBreak){
+        if(is(_f) !== "function") {
+            throw new TypeError('argument is not a function');
+        }
+
+        _falseBreak = (_falseBreak === false ? false : true);
+
+        //Declare
+        var $this,key,length,Obj;
+
+        //Our contextual this (for the callback)
+        $this = this;
+
+        //Readibly polyfillian
+        key = 0;
+        Obj = Object(this);
+        length = Obj.length >>> 0;
+
+        //Iterate (obviously)
+        while(key<length){
+            let val,cbReturn;
+            if(key in Obj){
+                val = Obj[key];
+                cbReturn = _f.call($this,key,val,_returnArg);
+                if(cbReturn === false && _falseBreak){
+                    break;
+                }
+                _returnArg = cbReturn || _returnArg;
+            }
+            key++;
+        }
+        return _returnArg;
     }
 
     //Truthy/falsy indexOf

@@ -57,14 +57,32 @@ Loop over an array, calling callback each iteration. Break when false is explici
 ```js
 //Example of breaking each
 var items = new ArcArray('a','b','c');
-items.each(function(_value,_index,_array){
+items.each(function(_index,_value,_array){
    if(_value === 'b'){
         return false; //Return explicit false to break
    }
 });
 ```
 
-###ArcArray.contains(val:Mixed)
+### .returnEach(callback:Function,referenceVal:Mixed [,falseBreak:Boolean])
+Similar to each, but accepts a second value that is passed in initially, and then potentially passed in on each subsequent iteration. And then eventually returned.
+
+Default behavior still uses a hard `false` return as a break, but this can be disabled optionally by passing in false as the third argument.
+
+```js
+//Example of returnEach
+var numbers = new ArcArray(1,2,3,4,5,6);
+var even = numbers.each(function(_index,_value,_evenArray){
+    if(_value%2 === 0){
+        _evenArray.push(_value);
+    }
+    return _evenArray;
+},[]);
+
+//Even contains [2,4,6]
+```
+
+###.contains(val:Mixed)
 This is a convenience function for `return ([].indexOf(val) !== -1 ? true : false)`
 ```js
 //Example of contains
