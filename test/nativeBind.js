@@ -10,5 +10,9 @@ tap.test('ArcArray nativeBind',function(_test){
     let testArray = ['a','b'].arc();
     _test.equal(is(testArray),'array');
     _test.equal(is(testArray,true),'ArcArray');
+
+    testArray = [1].arc();
+    _test.equal(testArray[0],1);
+
     _test.end();
 });

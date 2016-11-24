@@ -145,7 +145,12 @@ class ArcArray extends Array {
             value: function(){
                 var $this = this;
                 if(is($this,true) !== 'ArcArray'){
-                    $this = new ArcArray(...$this);
+                    if($this.length === 1){
+                        var NewArray = new ArcArray();
+                        NewArray.push($this[0]);
+                        return NewArray;
+                    }
+                    return new ArcArray(...$this);
                 }
                 return $this;
             }
