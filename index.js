@@ -157,6 +157,11 @@ class ArcArray extends Array {
             return _array;
         }
         else if(is(_array) === 'array'){
+            if(_array.length === 1){
+                var NewArray = new ArcArray();
+                NewArray.push(_array[0]);
+                return NewArray;
+            }
             return new ArcArray(..._array);
         }
         else{

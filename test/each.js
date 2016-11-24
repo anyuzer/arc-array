@@ -30,6 +30,17 @@ tap.test('ArcArray.each',function(_test){
     });
     _test.equal(count,2);
 
+    //Testing an additional edge case
+    count = 0;
+    testArray = [1];
+    testArray = ArcArray.wrap(testArray);
+    
+    testArray.each(function(_i,_v){
+        count++;
+    });
+
+    _test.equal(count,1);
+
     //End
     _test.end();
 });
