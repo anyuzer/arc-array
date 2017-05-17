@@ -9,100 +9,15 @@ $ npm install arc-array --save
 
 
 ## Features
-* each() with break functionality
-* complex evaluation filtering (using ArcCheck)
-* quick filtering
 * callback based join
 * native convenience binding (if desired)
 * extends native array so should be compatible
 
 
-## Basic Usage
-
-The following example creates a new ArcArray, filters out empty and false values and iterates to a specific value before breaking
-
-```js
-var ArcArray = require('arc-array');
-
-//Equivalent to ['a','','b',false,'c']
-var someArray = new ArcArray('a','','b',false,'c');
-
-//Filter out '' and false values
-someArray.quickFilter(['',false]);
-
-//Loop through the array
-someArray.each(function(_value,_index){
-    if(_value === 'b'){
-        //Break when we hit the value 'b'
-        return false;
-    }
-});
-```
-
 ## API
 
 ### new ArcArray(...args)
 Create a new `ArcArray` object. Requires `new`
-
-### .each(callback:Function [,thisContext:Object])
-
-Loop over an array, calling callback each iteration. Break when false is explicitly returned.
-
-**callback** is a required function that is called with 3 arguments passed in
-* index: the index of the current iteration
-* value: the value of the current index being iterated over
-* array: the reference to the original ArcArray object
-
-**thisContext** is an optional object that will be available inside of the callback as 'this' if set, otherwise defaulting to the original array object
-```js
-//Example of breaking each
-var items = new ArcArray('a','b','c');
-items.each(function(_index,_value,_array){
-   if(_value === 'b'){
-        return false; //Return explicit false to break
-   }
-});
-```
-
-### .returnEach(callback:Function,referenceVal:Mixed [,falseBreak:Boolean])
-Similar to each, but accepts a second value that is passed in initially, and then potentially passed in on each subsequent iteration. And then eventually returned.
-
-Default behavior still uses a hard `false` return as a break, but this can be disabled optionally by passing in false as the third argument.
-
-```js
-//Example of returnEach
-var numbers = new ArcArray(1,2,3,4,5,6);
-var even = numbers.each(function(_index,_value,_evenArray){
-    if(_value%2 === 0){
-        _evenArray.push(_value);
-    }
-    return _evenArray;
-},[]);
-
-//Even contains [2,4,6]
-```
-
-###.contains(val:Mixed)
-This is a convenience function for `return ([].indexOf(val) !== -1 ? true : false)`
-```js
-//Example of contains
-var alpha = new ArcArray('a','b','c');
-alpha.contains('a'); //returns true
-alpha.contains('z'); //returns false
-```
-
-### .quickFilter(values:Array)
-Filter out values in array that match values in passed in array. Returns original ArcArray
-
-**values** is an array of values that are compared against individual values in the array. If a match is found, the value in the array is automatically removed.
-```js
-//Example of quickFilter
-var items = new ArcArray('a','b','c');
-items.quickFilter(['b']); //items is reduced to ['a','c']
-```
-
-### .filter(filter:ArcCheck)
-Use an ArcCheck object to perform complex evaluation on a value to decide whether or not it should be removed (see ArcCheck for more details on use). Returns original ArcArray.
 
 ### .joinCallback(callback:Function [, separator:String])
 Create a string based on the returned values from a callback on each index of an array.

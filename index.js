@@ -56,7 +56,7 @@ class ArcArray extends Array {
         }
         else if(is(_array) === 'array'){
             if(_array.length === 1){
-                var NewArray = new ArcArray();
+                const NewArray = new ArcArray();
                 NewArray.push(_array[0]);
                 return NewArray;
             }
