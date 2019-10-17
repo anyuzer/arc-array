@@ -4,7 +4,7 @@
   "description": "An array convenience subclass",
   "main": "index.js",
   "scripts": {
-    "test": "tap test/*.js --coverage --coverage-report=html"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
