@@ -24,6 +24,14 @@ class ArcArray extends Array {
         return joined;
     }
 
+    shuffle() {
+        for (let i = this.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [this[i], this[j]] = [this[j], this[i]];
+        }
+        return this;
+    }
+
     //This is our format for evaluating named prototypes
     toString(){
         return '[object '+this.constructor.name+']';
@@ -49,7 +57,7 @@ class ArcArray extends Array {
             }
         });
     }
-    
+
     static wrap(_array){
         if(is(_array,true) === 'ArcArray'){
             return _array;

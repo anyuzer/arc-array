@@ -23,6 +23,6 @@
     "arc-is": "1.0.5"
   },
   "devDependencies": {
-    "tap": "^5.7.1"
+    "jest": "^24.9.0"
   }
 }
