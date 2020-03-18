@@ -32,6 +32,10 @@ class ArcArray extends Array {
         return this;
     }
 
+    rand() {
+        return this[Math.floor(Math.random() * this.length)]
+    }
+
     //This is our format for evaluating named prototypes
     toString(){
         return '[object '+this.constructor.name+']';
