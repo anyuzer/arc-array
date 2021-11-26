@@ -18,4 +18,10 @@ describe('ArcArray.wrap',function(){
         expect(testArray2).toEqual(wrapResult);
         expect(wrapResult).toBe(ArcArray.wrap(wrapResult));
     });
+
+    it('show throw an error if wrapping non array', () => {
+        expect(() => {
+            ArcArray.wrap({});
+        }).toThrow('Cannot wrap value, valid array expected')
+    })
 });

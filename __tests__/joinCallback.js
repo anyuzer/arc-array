@@ -19,4 +19,11 @@ describe('ArcArray.joinCallback', () => {
         //Or a different string
         expect(testArray.joinCallback(fizzbuzz,' ')).toEqual('fizzbuzz 1 2 fizz 4 buzz fizz 7 8 fizz buzz 11 fizz 13 14 fizzbuzz');
     });
+
+    it('should throw an error if a non function is passed in as the callback', () => {
+        let testArray = new ArcArray();
+        expect(() => {
+            testArray.joinCallback('');
+        }).toThrow('ArcArray.joinCallback requires a valid callback to be passed in');
+    })
 });

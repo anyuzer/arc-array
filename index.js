@@ -3,14 +3,14 @@ const is = require('arc-is');
 class ArcArray extends Array {
     //Iterate through the array, call the callback passing in the value join the returned values (I may want to check to see if the return val is a string?)
     joinCallback(_callback,_separator){
-        //Don't bother if the array is empty
-        if(!this.length){
-            return '';
-        }
-
         //If it's not empty, ensure our argument is correct
         if(is(_callback) !== 'function'){
             throw new TypeError('ArcArray.joinCallback requires a valid callback to be passed in');
+        }
+
+        //Don't bother if the array is empty
+        if(!this.length){
+            return '';
         }
 
         //Normalize the separator
@@ -34,6 +34,10 @@ class ArcArray extends Array {
 
     rand() {
         return this[Math.floor(Math.random() * this.length)]
+    }
+
+    async pMap(_f) {
+        return Promise.all(this.map(_f))
     }
 
     //This is our format for evaluating named prototypes

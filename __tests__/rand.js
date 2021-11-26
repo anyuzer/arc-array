@@ -24,8 +24,6 @@ describe('ArcArray rand', () => {
             allValuesFound = allFound;
         }
 
-        console.log(sequentialRuns);
-
         expect(sequentialRuns).not.toEqual(testArray.length);
     });
 });
