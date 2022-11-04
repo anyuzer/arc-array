@@ -1,4 +1,4 @@
-const ArcArray = require('../');
+import ArcArray from "../index.js";
 
 describe('ArcArray shuffle', () => {
     it('Should shuffle the array in place', () => {

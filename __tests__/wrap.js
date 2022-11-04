@@ -1,5 +1,5 @@
-const is = require('arc-is');
-const ArcArray = require('../');
+import is from 'arc-is';
+import ArcArray from "../index.js";
 
 //Test wrapping an existing array
 describe('ArcArray.wrap',function(){

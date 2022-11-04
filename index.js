@@ -1,4 +1,4 @@
-const is = require('arc-is');
+import is from 'arc-is';
 
 class ArcArray extends Array {
     //Iterate through the array, call the callback passing in the value join the returned values (I may want to check to see if the return val is a string?)
@@ -84,4 +84,4 @@ class ArcArray extends Array {
     }
 }
 
-module.exports = ArcArray;
+export default ArcArray;

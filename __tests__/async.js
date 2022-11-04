@@ -1,4 +1,4 @@
-const ArcArray = require('../');
+import ArcArray from "../index.js";
 
 describe('ArcArray promise map', () => {
     it('Should allow us to use await to resolve a map', async () => {

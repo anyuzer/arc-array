@@ -1,5 +1,5 @@
-const is = require('arc-is');
-const ArcArray = require('../');
+import is from 'arc-is';
+import ArcArray from "../index.js";
 
 describe('ArcArray typeCheck', () => {
     it('Should pass a check as a native Array, or when strictly cast as an ArcArray', () => {

@@ -1,5 +1,5 @@
-const is = require('arc-is');
-const ArcArray = require('../');
+import is from 'arc-is';
+import ArcArray from "../index.js";
 
 describe('ArcArray nativeBind', () => {
     it('should extend the native array object with ArcArray methods', () => {

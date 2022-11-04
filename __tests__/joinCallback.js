@@ -1,4 +1,4 @@
-const ArcArray = require('../');
+import ArcArray from "../index.js";
 
 function fizzbuzz(_val,_index){
     return ((_index%3 === 0 ? 'fizz' : '')+(_index%5 === 0 ? 'buzz' : '')) || _val;

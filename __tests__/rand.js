@@ -1,4 +1,4 @@
-const ArcArray = require('../');
+import ArcArray from "../index.js";
 
 describe('ArcArray rand', () => {
     it('Should return a random item', () => {
