@@ -45,27 +45,6 @@ class ArcArray extends Array {
         return '[object '+this.constructor.name+']';
     }
 
-    //A static method to allow a native shortcut: so [].arc() would return an ArcArray
-    static bindNative(){
-        Object.defineProperty(Array.prototype,'arc',{
-            enumerable: false,
-            configurable: false,
-            writable: false,
-            value: function(){
-                var $this = this;
-                if(is($this,true) !== 'ArcArray'){
-                    if($this.length === 1){
-                        var NewArray = new ArcArray();
-                        NewArray.push($this[0]);
-                        return NewArray;
-                    }
-                    return new ArcArray(...$this);
-                }
-                return $this;
-            }
-        });
-    }
-
     static wrap(_array){
         if(is(_array,true) === 'ArcArray'){
             return _array;
